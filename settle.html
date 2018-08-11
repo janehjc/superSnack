@@ -143,7 +143,6 @@
 <!--公共js-->
 <script src="js/pubilic.js" type="text/javascript" charset="utf-8"></script>
 <script>
-	console.log(JSON.parse(sessionStorage.getItem('submitData'))
     var vm = new Vue({
         el:"#settle",
         data:{
@@ -179,14 +178,14 @@
 		    			"billContent":this.billContent,
 		    			"amountMoney": this.getLocationData.moneyNum
 		    		}
-                    console.log(H5params);
+                    // console.log(H5params);
 		    		H5params = JSON.stringify(H5params);
 		    		//3des数据加密
 		      		var initEnterData = encrypt.encryptByDES(H5params);
 		    		var ajaxParm = {
 		    			"H5params":initEnterData
 					}
-		    		console.log(ajaxParm);
+		    		// console.log(ajaxParm);
 		    		axios({
 		    			url: respUrl,
 						method: 'post',
@@ -195,7 +194,7 @@
 						//返回数据解密
 						var outData = encrypt.decryptByDES(resp.data);
 						outData = JSON.parse(outData);
-						console.log(outData);
+						// console.log(outData);
 						if(outData.resultCode == '0'){
 							this.endLoading();
 							this.message(outData.resultMessage,'success');
@@ -206,7 +205,7 @@
 						}
 					}).catch(err => {
 						this.endLoading();
-						console.log(err);
+						// console.log(err);
 						this.message(err,'error');
 				   	});
                 }
