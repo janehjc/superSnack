@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>排队等待</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+    <div class="wait_container" id="orderingWait" v-cloak>
+        <div class="wait_nav">
+            <div class="wait_back"></div>
+            <div class="wait_font">
+                <h1>排号等待</h1>
+            </div>
+            <div>
+                <i class="el-icon-more" ></i>
+            </div>
+        </div>
+        <div class="wait_header">
+            <p class="wait_top">
+                <span class="wait_odd">单号：<span v-text="orderId"></span></span>
+            </p>
+            <div class="wait_hcontent">
+                <p class="wait_order">等餐编号</p>
+                <p class="wait_orderNumber">— <span v-text="waitNo"></span> —</p>
+                <!--<p class="wait_nowNumber">当前叫号： 265</p>-->
+                <p class="wait_hint">请您再叫到号后尽快到取餐台取餐，谢谢！</p>
+            </div>
+        </div>
+        <div class="wait_main">
+            <div class="wait_mheader">
+                <div><img :src="logo"></div>
+                <div v-text="restaurantName"></div>
+            </div>
+            <div class="wait_main">
+                <div class="wait_main_header">
+                    <div class="wait_main_headerDemo" v-for="(value,index) of foodList">
+                        <div class="wait_settleDemo">
+                            <img :src="value.foodImg">
+                        </div>
+                        <div class="wait_settleDemo_txt">
+                            <p>
+                                <span class="wait_settleName" v-text="value.foodName"></span>
+                                <span class="wait_settleMoney">￥{{value.price}}</span>
+                            </p>
+                            <span class="wait_settleAcount">x<span v-text="value.foodNum"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wait_main_footer">
+                    <p>
+                        <span class="wait_data" v-text="payTime"></span>
+                        <span class="wait_totalPrice">总数：{{amountPrice}}</span>
+                    </p>
+                    <p>
+                        <span v-text="orderStatus"></span>
+                        <span class="wait_payType">微信支付：{{amountPrice}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/element-ui@2.4.1.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+<!--3des编码解码 js文件-->
+<script src="js/tripledes.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/mode-ecb.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/encrypt.js" type="text/javascript" charset="utf-8"></script>
+<!--公共js-->
+<script src="js/pubilic.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var vm = new Vue({
+                el:"#orderingWait",
+                data:{
+                    orderId:'87237627517',
+                    waitNo:'268',
+                    restaurantName:"MOJI轻食主义",
+                    logo:"img/wait-icon/index-header-bg.png",
+                    amountPrice: 23,
+                    payTime:'2018/07/05 14:25',
+                    orderStatus:'已支付',
+                    foodList: [{
+                        foodId: "201806050101",
+                        foodName: "西红柿炒蘑菇",
+                        foodDesc: "菜如其名，美滋滋。。。",
+                        foodImg:"img/wait-icon/indexDemo-bg2.png",
+                        price: "11",
+                        foodNum: "1"
+                    },
+                        {
+                            foodId: "201806050101",
+                            foodName: "土豆泥",
+                            foodDesc: "菜如其名，美滋滋。。。",
+                            foodImg:"img/wait-icon/indexDemo-bg1.png",
+                            price: "12",
+                            foodNum: "1"
+                        }]
+                }
+            });
+        </script>
+</body>
+</html>

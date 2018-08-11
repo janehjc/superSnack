@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name = "format-detection" content="telephone = no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>订单结算</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+    	html,body{background-color: #f2f0f0;}
+    </style>
+</head>
+<body>
+    <div id="settle" class="settle-container" v-cloak>
+        <div class="settle-nav">
+            <div class="settle-back" id="settle-back" @click="goBack"></div>
+            <div class="settle-font">
+                <h1>提交订单</h1>
+            </div>
+            <div>
+                <i class="el-icon-more" style="padding-right: 10px"></i>
+            </div>
+        </div>
+        <div class="settle-header">
+                <div><img :src="getLocationData.logo"></div>
+                <div v-text="getLocationData.restaurantName"></div>
+        </div>
+        <div class="settle-main">
+            <div class="settle-main-header">
+            <div class="settle-main-headerDemo" v-for="(value,index) of getLocationData.foodList">
+                <div class="settleDemo">
+                    <img :src="value.foodImg">
+                </div>
+                <div class="settleDemo-txt">
+                   <p>
+                       <span class="settleName" v-text="value.foodName"></span>
+                       <span class="settleMoney">{{value.price | moneyMark(value.price)}}</span>
+                   </p>
+                    <span class="settleAcount">x <span v-text="value.num"></span></span>
+                </div>
+            </div>
+            </div>
+            <div class="container" id="container">
+                <div>
+	                <p class="p1"></p>
+	                <div class="settle-main-main">
+	                    <div class="payMethod">
+	                        <div class="payMethod-p">
+	                            <p>支付方式</p>
+	                        </div>
+	                        <div class="payMethod-online">
+	                            <span>微信支付</span>
+	                        </div>
+	                    </div>
+	                    <div class="remarks">
+	                        <div class="remarks-p">
+	                            <p>备注</p>
+	                        </div>
+	                        <div class="remarks-input">
+	                            <input v-model="remarks"  type="text" placeholder="请注明口味、偏好等要求"/>
+	                        </div>
+	                     </div>
+	                    <div class="invoice">
+	                        <div class="invoice-p">
+	                            <p>发票</p>
+	                        </div>
+	                        <div id="invoiceChoose">
+	                            <div class="invoice-pic1"><input type="radio" name="choose" checked v-on:click="tabIsShow=true;">&nbsp;是</div>
+	                            <div class="invoice-pic2"><input type="radio" name="choose" v-on:click="tabIsShow=false;">&nbsp;否</div>
+	                        </div>
+	                    </div>
+	                </div>
+                </div>
+                <div id="invoice-details" v-show="tabIsShow" >
+	                <div class="p2" >
+	                    <p>发票详情</p>
+	                </div>
+	                <div class="settle-main-footer">
+	                    <div class="headUpType">
+	                        <div class="headUpType-p">
+	                            <p>抬头类型</p>
+	                        </div>
+	                        <div id="headUp-choose">
+	                            <div class="headUpType-pic1" id="headUpType-pic1"><input type="radio" name="chooseType" checked v-on:click="numIsShow=true;">&nbsp;企业单位</div>
+	                            <div class="headUpType-pic2" id="headUpType-pic2"><input type="radio" name="chooseType" v-on:click="numIsShow=false;taxNum='';">&nbsp;个人/非企业单位</div>
+	                        </div>
+	                    </div>
+	                    <div class="invoiceUp">
+	                        <div class="invoiceUp-p">
+	                            <p>发票抬头</p>
+	                        </div>
+	                        <div class="invoiceUp-input">
+	                            <input v-model="billName" type="text" placeholder="填写发票抬头"/>
+	                        </div>
+	
+	                    </div>
+	                    <div class="duty" id="duty" v-if="numIsShow">
+	                        <div class="duty-p">
+	                            <p >税号</p>
+	                        </div>
+	                        <div class="duty-input">
+	                            <input v-model="taxNum" type="text" placeholder="填写纳税人识别号"/>
+	                        </div>
+	                    </div>
+	                    <div class="invoiceContent">
+	                        <div class="invoiceContent-p">
+	                            <p>发票内容</p>
+	                        </div>
+	                        <div></div>
+	                    </div>
+	                    <div class="invoiceMoney">
+	                        <div class="invoiceMoney-p">
+	                            <p>发票金额</p>
+	                        </div>
+	                        <div class="invoiceMoney-crash">
+	                            <p v-text="getLocationData.moneyNum + ' 元'"></p>
+	                        </div>
+	                    </div>
+	                </div>
+                </div>
+            </div>
+        </div>
+        <div class="settle-footer">
+            <div class="settle-left">
+                <p>共计：<span>{{getLocationData.moneyNum | moneyMark(getLocationData.moneyNum)}}</span></p>
+            </div>
+            <div class="settle-right" @click="subMit()">
+                <p>提交订单</p>
+            </div>
+
+        </div>
+    </div>
+<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/element-ui@2.4.1.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+<!--3des编码解码 js文件-->
+<script src="js/tripledes.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/mode-ecb.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/encrypt.js" type="text/javascript" charset="utf-8"></script>
+<!--公共js-->
+<script src="js/pubilic.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	console.log(JSON.parse(sessionStorage.getItem('submitData'))
+    var vm = new Vue({
+        el:"#settle",
+        data:{
+        		remarks:'',			//备注
+        		billName:'',		//发票抬头
+        		taxNum:'',			//税号
+        		billContent:'',		//发票内容
+                tabIsShow:true,     //是否开发票
+                numIsShow:true,      //发票类型
+				getLocationData : JSON.parse(sessionStorage.getItem('submitData'))
+            },
+            methods:{
+            	//提交
+                subMit() {
+                	this.startLoading();
+//              	var foodIdArray = '';
+//              	this.getLocationData.foodList.forEach(function(v , k) {
+//						foodIdArray += ((v.foodId + '-' + v.num + '-' + v.price) + ',');
+//			       	});
+					var isBill = '',billType = '';
+					this.tabIsShow?(isBill = 'Y'):(isBill = 'N');
+					this.numIsShow?(billType = 'Q'):(billType = 'G');
+                    var H5params = {
+		    			"funCode": "placeOrders",
+		    			"restaurantId": this.getLocationData.restaurantId,
+		    			"foodIdArray": this.getLocationData.foodList,
+		    			"payMethod": 'W',
+		    			"flag": isBill,
+		    			"billType":billType,
+		    			"remarks":this.remarks,
+		    			"billName":this.billName,
+		    			"taxNum":this.taxNum,
+		    			"billContent":this.billContent,
+		    			"amountMoney": this.getLocationData.moneyNum
+		    		}
+                    console.log(H5params);
+		    		H5params = JSON.stringify(H5params);
+		    		//3des数据加密
+		      		var initEnterData = encrypt.encryptByDES(H5params);
+		    		var ajaxParm = {
+		    			"H5params":initEnterData
+					}
+		    		console.log(ajaxParm);
+		    		axios({
+		    			url: respUrl,
+						method: 'post',
+						data: ajaxParm,
+					}).then(resp => {
+						//返回数据解密
+						var outData = encrypt.decryptByDES(resp.data);
+						outData = JSON.parse(outData);
+						console.log(outData);
+						if(outData.resultCode == '0'){
+							this.endLoading();
+							this.message(outData.resultMessage,'success');
+							window.location.href = "./orderingWait.html";
+						}else{
+							this.endLoading();
+							this.message(outData.resultMessage,'error');
+						}
+					}).catch(err => {
+						this.endLoading();
+						console.log(err);
+						this.message(err,'error');
+				   	});
+                }
+        }
+    });
+</script>
+</body>
+</html>

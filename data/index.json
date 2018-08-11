@@ -1,0 +1,135 @@
+{
+    "resultMessage": "查询成功",
+    "resultCode": "0",
+    "restaurantId":"2222",
+    "restaurantName":"冰冰美食城",
+    "logo":"./img/index-icon/index-header-bg.png", 
+    "cateList": [ 
+        {
+	    "foodTypeId": "2018060501",  	
+        "foodTypeName": "热菜",	
+        "foodTypeImg":"./img/index-icon/index-aside3.png",
+	    "foodList": [
+                  {
+	              "foodId": "201806050101",  	
+                      "foodName": "西红柿炒蘑菇",
+                      "foodDesc": "菜如其名，美滋滋..", 	
+                      "foodImg":"./img/index-icon/indexDemo-bg1.png",
+                      "price": "11",
+                      "num": "0"
+                  },
+                  {
+	              "foodId": "201806050102",  	
+                      "foodName": "京酱肉丝",
+                      "foodDesc": "菜如其名，美滋滋..",	 		
+                      "foodImg":"./img/index-icon/indexDemo-bg2.png",
+                      "price": "15",
+                      "num": "0"
+                  }
+            ]	 
+        },
+        {
+	    "foodTypeId": "2018060601",  	
+        "foodTypeName": "凉菜",	
+        "foodTypeImg":"./img/index-icon/index-aside2.png",
+	    "foodList": [
+                  {
+	              "foodId": "201806060101",  	
+                      "foodName": "凉拌黄瓜", 
+                      "foodDesc": "菜如其名，美滋滋..",			
+                      "foodImg":"./img/index-icon/indexDemo-bg3.png",
+                      "price": "11",
+                      "num": "0"
+                  },
+                  {
+	              "foodId": "201806060102",  	
+                      "foodName": "雪山飞鸿", 
+                      "foodDesc": "菜如其名，美滋滋..",		
+                      "foodImg":"./img/index-icon/indexDemo-bg1.png",
+                      "price": "15",
+                      "num": "0"
+                  },
+                  {
+	              "foodId": "201806060101",  	
+                      "foodName": "凉拌黄瓜", 
+                      "foodDesc": "菜如其名，美滋滋..",			
+                      "foodImg":"./img/index-icon/indexDemo-bg3.png",
+                      "price": "11",
+                      "num": "0"
+                  },
+                  {
+	              "foodId": "201806060102",  	
+                      "foodName": "雪山飞鸿", 
+                      "foodDesc": "菜如其名，美滋滋..",		
+                      "foodImg":"./img/index-icon/indexDemo-bg1.png",
+                      "price": "15",
+                      "num": "0"
+                  },
+                  {
+	              "foodId": "201806060101",  	
+                      "foodName": "凉拌黄瓜", 
+                      "foodDesc": "菜如其名，美滋滋..",			
+                      "foodImg":"./img/index-icon/indexDemo-bg3.png",
+                      "price": "11",
+                      "num": "0"
+                  },
+                  {
+	              "foodId": "201806060102",  	
+                      "foodName": "雪山飞鸿", 
+                      "foodDesc": "菜如其名，美滋滋..",		
+                      "foodImg":"./img/index-icon/indexDemo-bg1.png",
+                      "price": "15",
+                      "num": "0"
+                  },
+                  {
+	              "foodId": "201806060101",  	
+                      "foodName": "凉拌黄瓜", 
+                      "foodDesc": "菜如其名，美滋滋..",			
+                      "foodImg":"./img/index-icon/indexDemo-bg3.png",
+                      "price": "11",
+                      "num": "0"
+                  },
+                  {
+	              "foodId": "201806060102",  	
+                      "foodName": "雪山飞鸿", 
+                      "foodDesc": "菜如其名，美滋滋..",		
+                      "foodImg":"./img/index-icon/indexDemo-bg1.png",
+                      "price": "15",
+                      "num": "0"
+                  }
+            ]	 
+        },
+        {
+	    "foodTypeId": "2018060701",  	
+        "foodTypeName": "酒水",	
+        "foodTypeImg":"./img/index-icon/index-aside1.png",
+	    "foodList": [
+	          {
+	          "foodId": "201806070101",  	
+	              "foodName": "九度", 
+	              "foodDesc": "夏季必备降暑神器..",		
+	              "foodImg":"./img/index-icon/indexDemo-bg2.png",
+	              "price": "5",
+	              "num": "0"
+	          },
+	          {
+	          "foodId": "201806070102",  	
+	              "foodName": "酸梅汤", 
+	              "foodDesc": "夏季必备降暑神器..",		
+	              "foodImg":"./img/index-icon/indexDemo-bg1.png",
+	              "price": "3",
+	              "num": "0"
+	          },
+	          {
+	          "foodId": "201806070102",  	
+	              "foodName": "冰芬", 
+	              "foodDesc": "夏季必备降暑神器..",		
+	              "foodImg":"./img/index-icon/indexDemo-bg1.png",
+	              "price": "3",
+	              "num": "0"
+	          }
+            ]	 
+        }
+        
+    ]
+}
