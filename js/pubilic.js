@@ -1,4 +1,4 @@
-var respUrl = 'http://web_mos.ittun.com/cate/f/app/getH5Response/';   //公网
+var respUrl = 'http://47.94.200.117:8081/cate/f/app/getH5Response/';   //公网
 //var respUrl = 'http://113.140.8.250:28080/cate/f/app/getH5Response/';
 //截取url参数
 var getParam = function getParam(paramName) {
